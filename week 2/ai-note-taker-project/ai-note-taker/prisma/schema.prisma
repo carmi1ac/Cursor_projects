@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Note {
+  id        String    @id @default(cuid())
+  title     String
+  content   String    @db.Text
+  userId    String    // Clerk user ID
+  folderId String?   // Optional folder reference
+  folder   Folder?   @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  encrypted Boolean  @default(false)
+  color     String?  // Color code for the note (hex color)
+  tags      NoteTag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([folderId])
+  @@map("notes")
+}
+
+model Folder {
+  id         String      @id @default(cuid())
+  name       String
+  userId     String      // Clerk user ID
+  parentId   String?     // For nested folders
+  parent     Folder?     @relation("FolderHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children   Folder[]    @relation("FolderHierarchy")
+  notes      Note[]
+  flashCards FlashCard[] @relation("FlashCardFolder")
+  color      String?     // Color code for the folder (hex color)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([parentId])
+  @@map("folders")
+}
+
+model Todo {
+  id        String   @id @default(cuid())
+  text      String
+  completed Boolean  @default(false)
+  userId    String   // Clerk user ID
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("todos")
+}
+
+model FlashCard {
+  id        String   @id @default(cuid())
+  front     String   @db.Text
+  back      String   @db.Text
+  userId    String   // Clerk user ID
+  folderId  String?  // Optional folder reference
+  folder    Folder?  @relation("FlashCardFolder", fields: [folderId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([folderId])
+  @@map("flashcards")
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String
+  color     String   // Color code for the tag (hex color)
+  userId    String   // Clerk user ID
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  notes NoteTag[]
+
+  @@unique([userId, name])
+  @@index([userId])
+  @@map("tags")
+}
+
+model NoteTag {
+  id     String @id @default(cuid())
+  noteId String
+  tagId  String
+  note   Note   @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([noteId, tagId])
+  @@index([noteId])
+  @@index([tagId])
+  @@map("note_tags")
+}
