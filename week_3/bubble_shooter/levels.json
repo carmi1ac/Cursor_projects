@@ -1,0 +1,52 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "rows": 8,
+      "cols": 10,
+      "bubble_speed": 350,
+      "colors": ["red", "blue", "green", "purple", "yellow", "wookie"],
+      "starting_bubbles": 50
+    },
+    {
+      "level": 2,
+      "rows": 9,
+      "cols": 11,
+      "bubble_speed": 375,
+      "colors": ["red", "blue", "green", "purple", "yellow", "wookie"],
+      "starting_bubbles": 60
+    },
+    {
+      "level": 3,
+      "rows": 10,
+      "cols": 12,
+      "bubble_speed": 400,
+      "colors": ["red", "blue", "green", "purple", "yellow", "wookie"],
+      "starting_bubbles": 70
+    },
+    {
+      "level": 4,
+      "rows": 11,
+      "cols": 13,
+      "bubble_speed": 425,
+      "colors": ["red", "blue", "green", "purple", "yellow", "wookie"],
+      "starting_bubbles": 80
+    },
+    {
+      "level": 5,
+      "rows": 12,
+      "cols": 14,
+      "bubble_speed": 450,
+      "colors": ["red", "blue", "green", "purple", "yellow", "wookie"],
+      "starting_bubbles": 90
+    }
+  ],
+  "game_settings": {
+    "bubble_radius": 30,
+    "grid_offset_x": 50,
+    "grid_offset_y": 50,
+    "shooter_y_offset": 50,
+    "match_threshold": 3
+  }
+}
+

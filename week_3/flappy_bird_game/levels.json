@@ -1,0 +1,57 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "name": "Training Grounds",
+      "wall_speed": 2,
+      "enemy_speed": 1.5,
+      "enemy_spawn_rate": 0.005,
+      "wall_spacing": 300,
+      "wall_gap_size": 200,
+      "collectible_spawn_rate": 0.003,
+      "gravity": 0.3,
+      "flap_strength": -6,
+      "projectile_speed": 8,
+      "projectile_cooldown": 500,
+      "description": "Beginner level - Learn the basics"
+    },
+    {
+      "level": 2,
+      "name": "City Streets",
+      "wall_speed": 3,
+      "enemy_speed": 2,
+      "enemy_spawn_rate": 0.007,
+      "wall_spacing": 280,
+      "wall_gap_size": 180,
+      "collectible_spawn_rate": 0.004,
+      "gravity": 0.35,
+      "flap_strength": -6.5,
+      "projectile_speed": 9,
+      "projectile_cooldown": 450,
+      "description": "Medium difficulty - Test your skills"
+    },
+    {
+      "level": 3,
+      "name": "Hydra Base",
+      "wall_speed": 4,
+      "enemy_speed": 2.5,
+      "enemy_spawn_rate": 0.01,
+      "wall_spacing": 260,
+      "wall_gap_size": 160,
+      "collectible_spawn_rate": 0.005,
+      "gravity": 0.4,
+      "flap_strength": -7,
+      "projectile_speed": 10,
+      "projectile_cooldown": 400,
+      "description": "Hard level - Master challenge"
+    }
+  ],
+  "default_level": 1,
+  "hero_size": 60,
+  "enemy_size": 50,
+  "collectible_size": 30,
+  "projectile_size": 15,
+  "screen_width": 800,
+  "screen_height": 600
+}
+
